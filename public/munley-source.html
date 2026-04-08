@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Munley Made Meals — Chef-Prepared, Macro-Friendly Meals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #faf9f6; font-family: 'DM Sans', sans-serif; color: #1a1a1a; -webkit-font-smoothing: antialiased; }
+button { cursor: pointer; font-family: inherit; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+:root {
+  --bg:#faf9f6;--dark:#1a1a1a;--mid:#6b6b6b;--light:#a3a3a3;--border:#e8e5e0;
+  --accent:#c0392b;--accent-hover:#a93226;--green:#2d7a4f;--green-light:#e8f5ee;--warm:#f5f0ea;
+  --serif:'Playfair Display',serif;--sans:'DM Sans',sans-serif;
+}
+@keyframes slideInRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes popIn{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+.anim-forward{animation:slideInRight .35s ease}.anim-back{animation:slideInLeft .35s ease}
+
+.icon{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.icon svg{display:block}
+.icon-wrap{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.icon-wrap-sm{width:36px;height:36px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center}
+
+.navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(26,26,26,.96);backdrop-filter:blur(12px);padding:0 24px;border-bottom:1px solid rgba(255,255,255,.06)}
+.navbar-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav-logo{display:flex;align-items:center;gap:10px;cursor:pointer}
+.nav-logo-icon{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:700;font-size:17px}
+.nav-logo-text{font-family:var(--serif);color:#fff;font-size:17px;font-weight:600;letter-spacing:-.02em}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-link{color:#bbb;font-size:14px;font-weight:500;transition:color .2s;cursor:pointer}.nav-link:hover{color:#fff}
+.nav-cta{background:var(--accent);color:#fff;border:none;padding:10px 22px;border-radius:10px;font-size:14px;font-weight:700;transition:background .2s}.nav-cta:hover{background:var(--accent-hover)}
+
+.hero{padding:140px 24px 80px;text-align:center;position:relative;overflow:hidden;background:linear-gradient(180deg,#1a1a1a 0%,#2a2320 50%,#3d2e24 100%)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 80%,rgba(192,57,43,.12) 0%,transparent 70%)}
+.hero-inner{max-width:800px;margin:0 auto;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:30px;padding:6px 16px;font-size:12px;color:#ccc;font-weight:500;letter-spacing:.04em;text-transform:uppercase;margin-bottom:28px}
+.hero h1{font-family:var(--serif);font-size:56px;font-weight:700;color:#fff;letter-spacing:-.035em;line-height:1.1;margin-bottom:20px}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero p{font-size:19px;color:#a89e96;line-height:1.6;max-width:560px;margin:0 auto 36px}
+.hero-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.hero-btn-primary{background:var(--accent);color:#fff;border:none;padding:16px 36px;border-radius:14px;font-size:16px;font-weight:700;transition:all .2s;display:inline-flex;align-items:center;gap:8px}.hero-btn-primary:hover{background:var(--accent-hover);transform:translateY(-1px)}
+.hero-btn-secondary{background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.15);padding:16px 32px;border-radius:14px;font-size:16px;font-weight:600;transition:all .2s;display:inline-flex;align-items:center;gap:8px}.hero-btn-secondary:hover{background:rgba(255,255,255,.1)}
+.hero-trust{display:flex;gap:28px;justify-content:center;margin-top:48px;flex-wrap:wrap}
+.hero-trust-item{font-size:13px;color:#8a7f76;display:flex;align-items:center;gap:8px}
+
+.quick-start{padding:80px 24px;background:var(--bg)}.quick-start-inner{max-width:1100px;margin:0 auto}
+.section-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:10px;text-align:center}
+.section-title{font-family:var(--serif);font-size:36px;font-weight:700;letter-spacing:-.03em;text-align:center;margin-bottom:8px}
+.section-sub{font-size:16px;color:var(--mid);text-align:center;margin-bottom:44px;max-width:520px;margin-left:auto;margin-right:auto}
+.qs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.qs-card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:32px 24px 28px;text-align:center;transition:all .25s;cursor:pointer;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center}
+.qs-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.06)}
+.qs-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--accent);transform:scaleX(0);transition:transform .3s}.qs-card:hover::after{transform:scaleX(1)}
+.qs-name{font-family:var(--serif);font-size:20px;font-weight:700;margin-bottom:6px}
+.qs-desc{font-size:13px;color:var(--mid);line-height:1.5;margin-bottom:16px}
+.qs-macros{display:flex;gap:5px;justify-content:center;flex-wrap:wrap}
+.qs-macro{font-size:10px;font-weight:600;padding:3px 8px;border-radius:6px;background:var(--warm);color:var(--mid)}.qs-macro.prot{background:var(--green-light);color:var(--green)}
+.qs-popular{position:absolute;top:14px;right:14px;background:var(--accent);color:#fff;font-size:9px;font-weight:700;padding:3px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.05em}
+
+.quality{padding:80px 24px;background:#fff}.quality-inner{max-width:1100px;margin:0 auto}
+.quality-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:44px}
+.quality-card{text-align:center;padding:28px 20px;border-radius:16px;background:var(--bg);display:flex;flex-direction:column;align-items:center}
+.quality-name{font-family:var(--serif);font-size:18px;font-weight:700;margin-bottom:8px}
+.quality-desc{font-size:14px;color:var(--mid);line-height:1.6}
+
+.how-it-works{padding:80px 24px;background:var(--bg)}.how-inner{max-width:900px;margin:0 auto}
+.how-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:44px}
+.how-step{text-align:center;display:flex;flex-direction:column;align-items:center}
+.how-num{width:48px;height:48px;border-radius:50%;background:var(--dark);color:#fff;font-family:var(--serif);font-size:20px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.how-step-title{font-family:var(--serif);font-size:20px;font-weight:700;margin-bottom:8px}
+.how-step-desc{font-size:14px;color:var(--mid);line-height:1.6}
+
+.chef{padding:80px 24px;background:#fff}
+.chef-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:center}
+.chef-img-wrap{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/5;background:linear-gradient(135deg,#e8cfc0,#d4a88c);display:flex;align-items:center;justify-content:center}
+.chef-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:10px}
+.chef-name{font-family:var(--serif);font-size:36px;font-weight:700;letter-spacing:-.03em;margin-bottom:8px}
+.chef-title{font-size:16px;color:var(--mid);font-style:italic;margin-bottom:20px}
+.chef-bio{font-size:15px;color:var(--mid);line-height:1.7;margin-bottom:16px}
+.chef-stats{display:flex;gap:24px;margin-top:28px}
+.chef-stat{text-align:center}.chef-stat-num{font-family:var(--serif);font-size:28px;font-weight:700;color:var(--dark)}.chef-stat-label{font-size:12px;color:var(--light);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+
+.services{padding:80px 24px;background:var(--dark);color:#fff}.services-inner{max-width:1100px;margin:0 auto}
+.services .section-label{color:var(--accent)}.services .section-title{color:#fff}.services .section-sub{color:#8a7f76}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+.service-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:36px 28px 32px;transition:all .25s;position:relative;overflow:hidden}
+.service-card:hover{background:rgba(255,255,255,.07);transform:translateY(-3px)}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),transparent)}
+.service-name{font-family:var(--serif);font-size:22px;font-weight:700;margin-bottom:10px}
+.service-desc{font-size:14px;color:#8a7f76;line-height:1.6;margin-bottom:20px}
+.service-features{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+.service-feature{font-size:13px;color:#a89e96;display:flex;align-items:center;gap:8px}
+.service-cta{display:inline-flex;align-items:center;gap:6px;padding:12px 24px;border-radius:10px;border:1px solid rgba(255,255,255,.2);color:#fff;font-size:14px;font-weight:600;transition:all .2s;background:0 0}.service-cta:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.3)}
+
+.cta-banner{padding:80px 24px;background:linear-gradient(135deg,var(--accent) 0%,#8e2218 100%);text-align:center}
+.cta-banner h2{font-family:var(--serif);font-size:36px;font-weight:700;color:#fff;margin-bottom:12px;letter-spacing:-.03em}
+.cta-banner p{font-size:17px;color:rgba(255,255,255,.75);margin-bottom:32px}
+.cta-banner-btn{background:#fff;color:var(--dark);border:none;padding:16px 40px;border-radius:14px;font-size:16px;font-weight:700;transition:all .2s;display:inline-flex;align-items:center;gap:8px}.cta-banner-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+
+.footer{background:var(--dark);padding:48px 24px 32px;border-top:1px solid rgba(255,255,255,.06)}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.footer-brand{font-family:var(--serif);color:#fff;font-size:16px;font-weight:600}
+.footer-links{display:flex;gap:24px}.footer-link{color:#777;font-size:13px;transition:color .2s;cursor:pointer}.footer-link:hover{color:#bbb}
+.footer-copy{color:#555;font-size:12px}
+
+.builder-wrap{display:none;min-height:100vh;padding-top:60px}.builder-wrap.visible{display:block}
+.homepage{display:block}.homepage.hidden{display:none}
+
+.progress-wrap{background:#fff;border-bottom:1px solid var(--border);padding:20px 24px}
+.progress-bar{max-width:600px;margin:0 auto;display:flex;align-items:center;justify-content:center}
+.progress-step{display:flex;align-items:center;position:relative}
+.progress-dot{width:32px;height:32px;border-radius:50%;background:var(--border);color:var(--light);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;transition:all .3s;flex-shrink:0}
+.progress-dot.active{background:var(--dark);color:#fff}.progress-dot.done{background:var(--green);color:#fff;cursor:pointer}
+.progress-label{position:absolute;top:38px;left:50%;transform:translateX(-50%);font-size:11px;color:var(--light);white-space:nowrap;font-weight:500}.progress-label.active{color:var(--dark)}
+.progress-line{width:60px;height:2px;background:var(--border);margin:0 6px;transition:all .3s}.progress-line.done{background:var(--green)}
+
+.builder-main{max-width:1100px;margin:0 auto;padding:40px 20px 60px}
+.step-container{display:flex;flex-direction:column;gap:28px}
+.step-header{text-align:center}
+.heading{font-family:var(--serif);font-size:34px;font-weight:700;letter-spacing:-.03em;margin-bottom:6px}
+.subheading{font-size:16px;color:var(--mid)}
+
+.goal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.goal-card{position:relative;background:#fff;border:2px solid var(--border);border-radius:16px;padding:28px 20px 22px;display:flex;flex-direction:column;align-items:center;gap:8px;transition:all .2s;text-align:center;outline:none}.goal-card:hover{border-color:#ccc}.goal-card.active{border-color:var(--accent);background:#fdf8f7;box-shadow:0 0 0 1px var(--accent)}
+.goal-tag{position:absolute;top:-10px;right:12px;background:var(--accent);color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.05em}
+.goal-label{font-family:var(--serif);font-size:20px;font-weight:700}
+.goal-desc{font-size:13px;color:var(--mid);line-height:1.4}
+.macro-row{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;margin-top:6px}
+.macro-pill{font-size:10px;font-weight:600;padding:3px 7px;border-radius:6px;background:var(--warm);color:var(--mid)}
+.check-mark{position:absolute;top:10px;left:10px;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;animation:popIn .25s ease}
+
+.box-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.box-card{position:relative;background:#fff;border:2px solid var(--border);border-radius:16px;padding:30px 20px 24px;display:flex;flex-direction:column;align-items:center;gap:4px;transition:all .2s;outline:none}.box-card:hover{border-color:#ccc}.box-card.active{border-color:var(--accent);background:#fdf8f7;box-shadow:0 0 0 1px var(--accent)}
+.save-badge{position:absolute;top:-10px;background:var(--green);color:#fff;font-size:11px;font-weight:700;padding:3px 12px;border-radius:20px}
+.box-count{font-family:var(--serif);font-size:48px;font-weight:700;line-height:1}
+.box-label{font-size:14px;font-weight:600}.box-meals-label{font-size:13px;color:var(--light);font-weight:500;text-transform:uppercase;letter-spacing:.08em}
+.box-divider{width:40px;height:1px;background:var(--border);margin:10px 0}
+.box-price{font-size:22px;font-weight:700}.box-price-unit{font-size:13px;font-weight:400;color:var(--mid)}.box-total{font-size:13px;color:var(--light)}
+
+.your-box{background:#fff;border:1px solid var(--border);border-radius:16px;padding:18px 20px}
+.your-box-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.your-box-title{font-family:var(--serif);font-size:18px;font-weight:700}
+.your-box-count{font-size:14px;font-weight:600;color:var(--accent);background:#fdf0ee;padding:4px 12px;border-radius:20px}
+.slot-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}
+.slot{width:80px;height:90px;border-radius:12px;border:2px dashed var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;flex-shrink:0}
+.slot.filled{border:2px solid var(--border);background:#fff;overflow:hidden}
+.slot-img{width:100%;height:56px;object-fit:cover;border-radius:10px 10px 0 0}
+.slot-name{font-size:9px;font-weight:600;text-align:center;padding:2px 4px;line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:100%}
+.slot-remove{position:absolute;top:-6px;right:-6px;width:20px;height:20px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:14px;line-height:1;display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+.slot-empty{font-size:16px;font-weight:600;color:var(--border)}
+
+.filter-row{display:flex;gap:8px;flex-wrap:wrap}
+.filter-btn{padding:8px 18px;border-radius:20px;border:1px solid var(--border);background:#fff;font-size:13px;font-weight:600;color:var(--mid);transition:all .2s;outline:none}.filter-btn:hover{border-color:#ccc}.filter-btn.active{background:var(--dark);color:#fff;border-color:var(--dark)}
+
+.meal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.meal-card{background:#fff;border-radius:14px;border:1px solid var(--border);overflow:hidden;transition:all .2s}.meal-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.meal-img-wrap{position:relative;width:100%;height:140px;overflow:hidden}
+.meal-img{width:100%;height:100%;object-fit:cover}
+.meal-count-badge{position:absolute;top:8px;right:8px;background:var(--accent);color:#fff;font-size:12px;font-weight:700;padding:2px 8px;border-radius:10px}
+.meal-info{padding:10px 12px 6px;display:flex;flex-direction:column;gap:2px}
+.meal-name{font-size:14px;font-weight:600}
+.meal-macros{display:flex;gap:4px;flex-wrap:wrap;margin-top:4px}
+.meal-macro-pill{font-size:10px;font-weight:600;padding:2px 6px;border-radius:5px;background:var(--warm);color:var(--mid)}.meal-macro-pill.protein{background:var(--green-light);color:var(--green)}
+.add-btn{width:calc(100% - 16px);margin:8px 8px 10px;padding:9px 0;border-radius:10px;border:1.5px solid var(--dark);background:0 0;font-size:13px;font-weight:700;color:var(--dark);transition:all .2s;outline:none}.add-btn:hover{background:var(--dark);color:#fff}.add-btn.disabled{opacity:.35;cursor:not-allowed}.add-btn.disabled:hover{background:0 0;color:var(--dark)}
+
+.review-grid{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start}
+.review-meals{display:flex;flex-direction:column;gap:10px}
+.review-item{display:flex;align-items:center;gap:14px;background:#fff;border-radius:14px;border:1px solid var(--border);padding:10px 14px;animation:popIn .3s ease}
+.review-img{width:56px;height:56px;border-radius:10px;object-fit:cover;flex-shrink:0}
+.review-item-info{flex:1;display:flex;flex-direction:column;gap:2px}
+.review-item-name{font-size:11px;font-weight:600;color:var(--light);text-transform:uppercase;letter-spacing:.05em}
+.review-item-meal{font-size:15px;font-weight:600}
+.review-macro-row{display:flex;gap:4px;flex-shrink:0}
+.review-macro-pill{font-size:10px;font-weight:600;padding:3px 6px;border-radius:5px;background:var(--warm);color:var(--mid)}.review-macro-pill.protein{background:var(--green-light);color:var(--green)}
+.review-remove{width:28px;height:28px;border-radius:50%;background:0 0;border:1px solid var(--border);color:var(--light);font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;outline:none;transition:all .15s}.review-remove:hover{background:#fdf0ee;border-color:var(--accent);color:var(--accent)}
+
+.summary-card{background:#fff;border-radius:16px;border:1px solid var(--border);padding:24px;position:sticky;top:80px;display:flex;flex-direction:column;gap:14px}
+.summary-title{font-family:var(--serif);font-size:20px;font-weight:700;margin-bottom:4px}
+.summary-row{display:flex;justify-content:space-between;font-size:15px;color:var(--mid)}.summary-row.total{font-weight:700;font-size:18px;color:var(--dark)}
+.summary-divider{height:1px;background:var(--border)}
+.summary-you-save{font-size:13px;color:var(--green);background:var(--green-light);padding:10px 14px;border-radius:10px;text-align:center;line-height:1.4;display:flex;align-items:center;justify-content:center;gap:6px}
+.checkout-btn{width:100%;padding:16px 0;border-radius:12px;border:none;background:var(--accent);color:#fff;font-size:16px;font-weight:700;cursor:pointer;transition:all .2s}.checkout-btn:hover{background:var(--accent-hover)}
+.summary-note{font-size:12px;color:var(--light);text-align:center}
+
+.nav-row{display:flex;justify-content:space-between;align-items:center;padding-top:8px}
+.btn-primary{padding:14px 32px;border-radius:12px;border:none;background:var(--dark);color:#fff;font-size:15px;font-weight:700;transition:all .2s;display:inline-flex;align-items:center;gap:6px}.btn-primary:hover{background:#333}.btn-primary.disabled{opacity:.3;cursor:not-allowed}
+.btn-secondary{padding:14px 24px;border-radius:12px;border:1.5px solid var(--border);background:0 0;font-size:15px;font-weight:600;color:var(--mid);transition:all .2s;display:inline-flex;align-items:center;gap:6px}.btn-secondary:hover{border-color:#ccc}
+
+@media(max-width:900px){.hero h1{font-size:38px}.goal-grid,.box-grid,.meal-grid,.qs-grid{grid-template-columns:repeat(2,1fr)}.quality-grid,.services-grid,.how-steps{grid-template-columns:repeat(2,1fr)}.review-grid{grid-template-columns:1fr}.chef-inner{grid-template-columns:1fr;text-align:center}.chef-stats{justify-content:center}.nav-links{display:none}.hero-trust{display:none}.review-macro-row{display:none}}
+@media(max-width:560px){.hero h1{font-size:30px}.hero{padding:120px 18px 60px}.section-title{font-size:28px}.goal-grid,.qs-grid{grid-template-columns:1fr}.quality-grid,.services-grid,.how-steps{grid-template-columns:1fr}.progress-line{width:30px}.builder-main{padding:28px 14px 50px}.heading{font-size:24px}.slot-row{flex-wrap:wrap}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.26.9/babel.min.js"></script>
+<script type="text/babel">
+const { useState } = React;
+
+/* ============ ICON COMPONENT ============ */
+const I = ({name,size=24,color="currentColor",sw=1.8}) => {
+  const d = {
+    flame:<path d="M8.5 14.5A4 4 0 0 1 8 12c0-2 1.5-3.5 3-5.5L12 5l1 1.5c1.5 2 3 3.5 3 5.5a4 4 0 0 1-8 0z"/>,
+    zap:<><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></>,
+    scale:<><path d="m16 16-4 4-4-4"/><path d="M12 20V4"/><path d="m8 8 4-4 4 4"/></>,
+    dumbbell:<><path d="M17.5 4.5 15 7l-1.5-1.5M6.5 19.5 9 17l1.5 1.5M2 12h3m14 0h3"/><path d="M6 8v8a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zM14 8v8a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1z"/></>,
+    ban:<><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></>,
+    beef:<><path d="M14 6c2-2 6-2 6 2s-4 8-8 12C8 16 4 12 4 8s4-4 6-2l4 0z"/></>,
+    droplets:<><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5S12 5.1 12 2c0 3.1-2 5.5-4 7S5 13 5 15a7 7 0 0 0 7 7z"/></>,
+    leaf:<><path d="M11 20A7 7 0 0 1 9.8 6.9C15.5 4.9 20 .5 20 .5S21.5 9.5 14 16.5"/><path d="M4 21c5-5 6-10 6-10"/></>,
+    'chef-hat':<><path d="M6 13.87A4 4 0 0 1 7.41 6a5 5 0 0 1 9.18 0A4 4 0 0 1 18 13.87V20H6z"/><path d="M6 17h12"/></>,
+    award:<><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></>,
+    package:<><path d="m16.5 9.4-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05M12 22.08V12"/></>,
+    utensils:<><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></>,
+    party:<><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7"/></>,
+    clipboard:<><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4M12 16h4M8 11h.01M8 16h.01"/></>,
+    'arrow-right':<><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></>,
+    'arrow-left':<><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></>,
+    'arrow-down':<><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></>,
+    check:<path d="M20 6 9 17l-5-5"/>,
+    x:<><path d="M18 6 6 18"/><path d="m6 6 12 12"/></>,
+    truck:<><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18h2m4 0h-1a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></>,
+    sparkles:<><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3Z"/><path d="M5 3v4M19 17v4M3 5h4M17 19h4"/></>,
+  };
+  return <span className="icon"><svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round">{d[name]||d.check}</svg></span>;
+};
+
+/* ============ DATA ============ */
+const GOALS=[
+  {id:"lean",label:"Get Lean",desc:"High protein, low carb meals to support fat loss",icon:"flame",tag:"Most Popular",cals:"~400 cal",protein:"40g+",carbs:"30g",fat:"12g",bg:"#fde8e5",ic:"#c0392b"},
+  {id:"perform",label:"Performance",desc:"Balanced fuel for training days and recovery",icon:"zap",tag:null,cals:"~550 cal",protein:"45g+",carbs:"55g",fat:"15g",bg:"#fef3e6",ic:"#d4850a"},
+  {id:"maintain",label:"Maintain",desc:"Balanced macros to stay on track effortlessly",icon:"scale",tag:null,cals:"~500 cal",protein:"38g+",carbs:"45g",fat:"14g",bg:"#e8f5ee",ic:"#2d7a4f"},
+  {id:"bulk",label:"Build Muscle",desc:"Calorie-dense meals to fuel growth",icon:"dumbbell",tag:null,cals:"~650 cal",protein:"50g+",carbs:"65g",fat:"18g",bg:"#eee8f5",ic:"#6b4fa0"},
+];
+const BOX_SIZES=[
+  {count:6,label:"Starter",perMeal:"$13.95",total:"$83.70",save:null},
+  {count:8,label:"Popular",perMeal:"$12.95",total:"$103.60",save:"Save $8"},
+  {count:10,label:"Committed",perMeal:"$11.95",total:"$119.50",save:"Save $20"},
+  {count:12,label:"All In",perMeal:"$10.95",total:"$131.40",save:"Save $36"},
+];
+
+const MI={
+  bowl:'<path d="M12 21a9 9 0 0 0 9-9H3a9 9 0 0 0 9 9z"/><path d="M7 21h10"/>',
+  drumstick:'<circle cx="14" cy="7" r="4"/><path d="M10 11 6 18.5a3 3 0 1 0 4.2 1.5L14 14"/>',
+  wrap:'<path d="M12 2a10 10 0 0 0-10 10h10"/><path d="M12 2a10 10 0 0 1 10 10H12"/><path d="M12 12v10a10 10 0 0 0 10-10"/>',
+  fish:'<path d="M6.5 12S4 10 4 7s5-5 8-2c3-3 8-3 8 0s-2.5 5-2.5 5"/><path d="M6.5 12s-2.5 2-2.5 5 5 5 8 2c3 3 8 3 8 0s-2.5-5-2.5-5"/><circle cx="16" cy="12" r=".5" fill="white"/>',
+  egg:'<path d="M12 22c4.4 0 8-4 8-9S16.4 2 12 2 4 6 4 13s3.6 9 8 9z"/>',
+  steak:'<path d="M14 6c2-2 6-2 6 2s-4 8-8 12C8 16 4 12 4 8s4-4 6-2h4z"/>',
+  shrimp:'<path d="M18.5 4A2.5 2.5 0 0 0 16 6.5V8a5 5 0 0 1-5 5H7a4 4 0 0 0 0 8h1"/><path d="M2 14h6"/><circle cx="18" cy="18" r="3"/>',
+  pancakes:'<ellipse cx="12" cy="7" rx="9" ry="3.5"/><path d="M3 7v2.5C3 11.4 7 13 12 13s9-1.6 9-3.5V7"/><path d="M3 13v2.5C3 17.4 7 19 12 19s9-1.6 9-3.5V13"/>',
+  pasta:'<path d="M12 2v5M8 2v5m8-5v5"/><path d="M4 9c0 0 3 2 8 2s8-2 8-2"/><path d="M5 22c0-5 3-7 7-7s7 2 7 7"/>',
+  lobster:'<path d="M18 4c2 0 3 1 3 3s-2 4-4 4"/><path d="M6 4C4 4 3 5 3 7s2 4 4 4"/><rect x="8" y="11" width="8" height="7" rx="4"/><path d="M12 11v7"/>',
+};
+const svgP=(icon,g1,g2)=>`data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${g1}"/><stop offset="100%" stop-color="${g2}"/></linearGradient></defs><rect width="400" height="300" fill="url(#g)"/><g transform="translate(164,114)" stroke="rgba(255,255,255,0.7)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><svg width="72" height="72" viewBox="0 0 24 24">${icon}</svg></g></svg>`)}`;
+
+const MEALS=[
+  {id:1,name:"Hawaiian Bowl",cat:"bowl",mi:"bowl",g1:"#f7c59f",g2:"#e8a87c",cal:420,protein:38,carbs:42,fat:10},
+  {id:2,name:"Chicken Parm",cat:"classic",mi:"drumstick",g1:"#e8cfc0",g2:"#d4a88c",cal:480,protein:42,carbs:38,fat:14},
+  {id:3,name:"Buffalo Chicken Wrap",cat:"wrap",mi:"wrap",g1:"#f0c27f",g2:"#e0956b",cal:390,protein:36,carbs:32,fat:11},
+  {id:4,name:"Chicken Quesadilla",cat:"wrap",mi:"wrap",g1:"#f5d98e",g2:"#e8c46a",cal:440,protein:35,carbs:36,fat:15},
+  {id:5,name:"Sliced Sirloin",cat:"classic",mi:"steak",g1:"#c9a89a",g2:"#a67c6d",cal:460,protein:44,carbs:30,fat:16},
+  {id:6,name:"Taco Bowl",cat:"bowl",mi:"bowl",g1:"#f2d49b",g2:"#d4a65a",cal:450,protein:36,carbs:44,fat:13},
+  {id:7,name:"Breakfast Wraps",cat:"breakfast",mi:"egg",g1:"#fbd786",g2:"#f7a97d",cal:380,protein:30,carbs:28,fat:14},
+  {id:8,name:"Sage Ground Turkey",cat:"classic",mi:"drumstick",g1:"#b8c9a3",g2:"#8fa672",cal:400,protein:40,carbs:32,fat:10},
+  {id:9,name:"Taco Wrap",cat:"wrap",mi:"wrap",g1:"#e8c98e",g2:"#c9975e",cal:430,protein:34,carbs:36,fat:14},
+  {id:10,name:"Greek Bowl",cat:"bowl",mi:"bowl",g1:"#a8c9b8",g2:"#7ba892",cal:410,protein:37,carbs:38,fat:11},
+  {id:11,name:"Seasoned Shrimp Pasta",cat:"classic",mi:"shrimp",g1:"#f5c0a8",g2:"#e89878",cal:440,protein:34,carbs:46,fat:10},
+  {id:12,name:"Lemon Pepper Salmon",cat:"classic",mi:"fish",g1:"#fde2b5",g2:"#f5c67a",cal:430,protein:40,carbs:28,fat:16},
+  {id:13,name:"Omelette & Homefries",cat:"breakfast",mi:"egg",g1:"#fbe8a6",g2:"#f4d35e",cal:370,protein:28,carbs:30,fat:14},
+  {id:14,name:"Kodiak Pancakes",cat:"breakfast",mi:"pancakes",g1:"#e0c9a6",g2:"#c4a06a",cal:440,protein:26,carbs:56,fat:10},
+  {id:15,name:"Penne with Meatballs",cat:"classic",mi:"pasta",g1:"#e8a87c",g2:"#c9604a",cal:520,protein:38,carbs:50,fat:16},
+  {id:16,name:"Surf and Turf",cat:"classic",mi:"lobster",g1:"#d4958e",g2:"#b86b62",cal:490,protein:46,carbs:26,fat:18},
+].map(m=>({...m,img:svgP(MI[m.mi]||MI.bowl,m.g1,m.g2)}));
+
+const FILTERS=[{id:"all",label:"All"},{id:"bowl",label:"Bowls"},{id:"wrap",label:"Wraps"},{id:"classic",label:"Classics"},{id:"breakfast",label:"Breakfast"}];
+const STEPS=["Goal","Box Size","Pick Meals","Review"];
+
+function App(){
+  const[page,setPage]=useState("home");const[step,setStep]=useState(0);const[goal,setGoal]=useState(null);
+  const[boxSize,setBoxSize]=useState(null);const[selectedMeals,setSelectedMeals]=useState([]);
+  const[filter,setFilter]=useState("all");const[animClass,setAnimClass]=useState("anim-forward");
+
+  const maxMeals=boxSize?BOX_SIZES.find(b=>b.count===boxSize)?.count:0;
+  const slotsLeft=maxMeals-selectedMeals.length;
+  const currentBox=BOX_SIZES.find(b=>b.count===boxSize);
+  const totalPrice=currentBox?currentBox.total.replace("$",""):"0.00";
+  const gd=GOALS.find(g=>g.id===goal);
+  const fm=filter==="all"?MEALS:MEALS.filter(m=>m.cat===filter);
+
+  const startBuilder=(pg)=>{if(pg)setGoal(pg);setStep(pg?1:0);setPage("builder");window.scrollTo({top:0,behavior:'smooth'});};
+  const goHome=()=>{setPage("home");setStep(0);setGoal(null);setBoxSize(null);setSelectedMeals([]);setFilter("all");window.scrollTo({top:0});};
+  const go=(dir)=>{setAnimClass(dir>0?"anim-forward":"anim-back");setTimeout(()=>setStep(s=>Math.max(0,Math.min(3,s+dir))),10);};
+  const jumpTo=(i)=>{if(i<step){setAnimClass("anim-back");setTimeout(()=>setStep(i),10);}};
+  const addMeal=(meal)=>{if(selectedMeals.length<maxMeals)setSelectedMeals([...selectedMeals,{...meal,uid:Date.now()+Math.random()}]);};
+  const removeMeal=(uid)=>setSelectedMeals(selectedMeals.filter(m=>m.uid!==uid));
+  const scrollTo=(id)=>document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});
+
+  return(<>
+    <nav className="navbar"><div className="navbar-inner">
+      <div className="nav-logo" onClick={goHome}><div className="nav-logo-icon">M</div><span className="nav-logo-text">Munley Made Meals</span></div>
+      <div className="nav-links">
+        <span className="nav-link" onClick={()=>{goHome();setTimeout(()=>scrollTo('quality'),100);}}>Quality</span>
+        <span className="nav-link" onClick={()=>{goHome();setTimeout(()=>scrollTo('chef'),100);}}>Chef Munley</span>
+        <span className="nav-link" onClick={()=>{goHome();setTimeout(()=>scrollTo('services'),100);}}>Services</span>
+        <button className="nav-cta" onClick={()=>startBuilder(null)}>Build Your Box</button>
+      </div>
+    </div></nav>
+
+    <div className={`homepage${page==="home"?"":" hidden"}`}>
+      <section className="hero"><div className="hero-inner">
+        <div className="hero-badge"><I name="truck" size={14} color="#ccc"/> Shipping Fresh Every Monday</div>
+        <h1>Chef-prepared meals that <em>actually</em> hit your macros</h1>
+        <p>No seed oils. No added fats. No guesswork. Just delicious, goal-specific meals from a 14-year executive chef — delivered to your door.</p>
+        <div className="hero-buttons">
+          <button className="hero-btn-primary" onClick={()=>startBuilder(null)}><I name="package" size={18} color="#fff"/> Build Your Box</button>
+          <button className="hero-btn-secondary" onClick={()=>scrollTo('quick-start')}>See Plans <I name="arrow-down" size={16} color="#fff"/></button>
+        </div>
+        <div className="hero-trust">
+          <span className="hero-trust-item"><I name="chef-hat" size={18} color="#a89e96"/> 14 Years Executive Chef</span>
+          <span className="hero-trust-item"><I name="award" size={18} color="#a89e96"/> Four Diamond Kitchen Trained</span>
+          <span className="hero-trust-item"><I name="truck" size={18} color="#a89e96"/> Free Shipping on All Boxes</span>
+        </div>
+      </div></section>
+
+      <section className="quick-start" id="quick-start"><div className="quick-start-inner">
+        <div className="section-label">Choose Your Goal</div>
+        <div className="section-title">Start with what you're working toward</div>
+        <div className="section-sub">Pick a goal and we'll guide you to the right meals and macros. No nutrition degree required.</div>
+        <div className="qs-grid">{GOALS.map(g=>(<div key={g.id} className="qs-card" onClick={()=>startBuilder(g.id)}>
+          {g.tag&&<span className="qs-popular">{g.tag}</span>}
+          <div className="icon-wrap" style={{background:g.bg}}><I name={g.icon} size={28} color={g.ic}/></div>
+          <div className="qs-name">{g.label}</div><div className="qs-desc">{g.desc}</div>
+        </div>))}</div>
+      </div></section>
+
+      <section className="quality" id="quality"><div className="quality-inner">
+        <div className="section-label">Our Promise</div>
+        <div className="section-title">What goes in (and what doesn't)</div>
+        <div className="section-sub">Every meal is built around real food. No shortcuts, no fillers, no compromises.</div>
+        <div className="quality-grid">{[
+          {i:"ban",bg:"#fde8e5",c:"#c0392b",n:"Zero Seed Oils",d:"We cook exclusively with high-quality olive oil and butter. No canola, soybean, or vegetable oils ever touch our kitchen."},
+          {i:"beef",bg:"#fde8e5",c:"#c0392b",n:"Lean Proteins",d:"Chicken breast, sirloin, ground turkey, wild salmon, and shrimp. Every protein is trimmed, portioned, and chef-prepared fresh."},
+          {i:"droplets",bg:"#e8f5ee",c:"#2d7a4f",n:"No Added Fats",d:"Flavor comes from technique, not excess oil. Each meal is designed to let you control your macros with precision."},
+          {i:"leaf",bg:"#e8f5ee",c:"#2d7a4f",n:"No Preservatives",d:"Cooked fresh weekly and shipped cold. Real ingredients with a real shelf life — not loaded with chemicals."},
+        ].map(q=>(<div key={q.n} className="quality-card">
+          <div className="icon-wrap" style={{background:q.bg}}><I name={q.i} size={26} color={q.c}/></div>
+          <div className="quality-name">{q.n}</div><div className="quality-desc">{q.d}</div>
+        </div>))}</div>
+      </div></section>
+
+      <section className="how-it-works"><div className="how-inner">
+        <div className="section-label">How It Works</div>
+        <div className="section-title">Three steps to eating like you have a chef</div>
+        <div className="how-steps">
+          <div className="how-step"><div className="how-num">1</div><div className="how-step-title">Pick Your Goal</div><div className="how-step-desc">Get Lean, Performance, Maintain, or Build Muscle — we tailor macros to your plan.</div></div>
+          <div className="how-step"><div className="how-num">2</div><div className="how-step-title">Build Your Box</div><div className="how-step-desc">Choose 6–12 meals from our rotating chef-crafted menu with transparent macros.</div></div>
+          <div className="how-step"><div className="how-num">3</div><div className="how-step-title">Heat & Eat</div><div className="how-step-desc">Ships fresh every Monday. Three minutes in the microwave or five in the oven.</div></div>
+        </div>
+      </div></section>
+
+      <section className="chef" id="chef"><div className="chef-inner">
+        <div className="chef-img-wrap"><I name="chef-hat" size={120} color="rgba(255,255,255,0.25)" sw={1.2}/></div>
+        <div>
+          <div className="chef-label">Meet the Chef</div>
+          <div className="chef-name">Chef Evan Munley</div>
+          <div className="chef-title">Executive Chef · 14 Years in Professional Kitchens</div>
+          <p className="chef-bio">From Spanish tapas kitchens to Four Diamond French restaurants, Chef Evan has spent over a decade mastering flavor and precision. His culinary journey spans bold communal dining, meticulous French technique, and innovative brewery concepts.</p>
+          <p className="chef-bio">At Munley Made Meals, he brings that same executive chef craft to meals you can eat at home — without the restaurant price tag. Every recipe is craveable, macro-friendly, and made with real ingredients.</p>
+          <div className="chef-stats">
+            <div className="chef-stat"><div className="chef-stat-num">14</div><div className="chef-stat-label">Years in Kitchen</div></div>
+            <div className="chef-stat"><div className="chef-stat-num">6</div><div className="chef-stat-label">As Exec Chef</div></div>
+            <div className="chef-stat"><div className="chef-stat-num">16</div><div className="chef-stat-label">Menu Items</div></div>
+          </div>
+        </div>
+      </div></section>
+
+      <section className="services" id="services"><div className="services-inner">
+        <div className="section-label">Beyond the Box</div>
+        <div className="section-title">Services for Every Occasion</div>
+        <div className="section-sub">From weekly meal prep to private dining — Chef Munley brings the kitchen to you.</div>
+        <div className="services-grid">{[
+          {i:"utensils",n:"Private Chef",d:"An intimate dining experience in your own home. Chef Evan designs a custom multi-course menu and handles everything from cooking to cleanup.",f:["Custom tasting menus","Date nights & celebrations","Full service, zero cleanup"],cta:"Inquire"},
+          {i:"party",n:"Catering",d:"Elevated catering that goes beyond chafing dishes. From corporate events to weddings, we bring chef-quality food at scale.",f:["10 to 200+ guests","Corporate & social events","Custom menus & dietary needs"],cta:"Get a Quote"},
+          {i:"clipboard",n:"Custom Meal Plans",d:"Work directly with Chef Evan to build a fully personalized weekly meal plan tailored to your exact macros and preferences.",f:["1-on-1 nutrition consultation","Allergy & preference customization","Weekly rotation to avoid burnout"],cta:"Learn More"},
+        ].map(s=>(<div key={s.n} className="service-card">
+          <div className="icon-wrap" style={{background:"rgba(192,57,43,.15)"}}><I name={s.i} size={26} color="#e8675a"/></div>
+          <div className="service-name">{s.n}</div><div className="service-desc">{s.d}</div>
+          <div className="service-features">{s.f.map(f=><span key={f} className="service-feature"><I name="check" size={14} color="#2d7a4f"/> {f}</span>)}</div>
+          <button className="service-cta">{s.cta} <I name="arrow-right" size={14} color="#fff"/></button>
+        </div>))}</div>
+      </div></section>
+
+      <section className="cta-banner">
+        <h2>Ready to eat better without the effort?</h2>
+        <p>Build your first box in under 2 minutes. Free shipping on every order.</p>
+        <button className="cta-banner-btn" onClick={()=>startBuilder(null)}><I name="package" size={18}/> Build Your Box</button>
+      </section>
+
+      <footer className="footer"><div className="footer-inner">
+        <span className="footer-brand">Munley Made Meals</span>
+        <div className="footer-links">
+          <span className="footer-link" onClick={()=>scrollTo('quality')}>Quality</span>
+          <span className="footer-link" onClick={()=>scrollTo('chef')}>Chef Munley</span>
+          <span className="footer-link" onClick={()=>scrollTo('services')}>Services</span>
+          <span className="footer-link" onClick={()=>startBuilder(null)}>Build a Box</span>
+        </div>
+        <span className="footer-copy">© 2026 Munley Made Meals</span>
+      </div></footer>
+    </div>
+
+    {/* BUILDER */}
+    <div className={`builder-wrap${page==="builder"?" visible":""}`}>
+      <div className="progress-wrap"><div className="progress-bar">
+        {STEPS.map((s,i)=>(<div key={s} className="progress-step">
+          <div className={`progress-dot${i<=step?" active":""}${i<step?" done":""}`} onClick={()=>jumpTo(i)}>{i<step?<I name="check" size={14} color="#fff"/>:i+1}</div>
+          <span className={`progress-label${i<=step?" active":""}`}>{s}</span>
+          {i<STEPS.length-1&&<div className={`progress-line${i<step?" done":""}`}/>}
+        </div>))}
+      </div></div>
+
+      <main className="builder-main"><div key={step} className={animClass}>
+        {step===0&&(<div className="step-container">
+          <div className="step-header"><h1 className="heading">What's your goal?</h1><p className="subheading">We'll tailor your macros. No guesswork, just results.</p></div>
+          <div className="goal-grid">{GOALS.map(g=>(<button key={g.id} className={`goal-card${goal===g.id?" active":""}`} onClick={()=>setGoal(g.id)}>
+            {g.tag&&<span className="goal-tag">{g.tag}</span>}
+            <div className="icon-wrap" style={{background:g.bg}}><I name={g.icon} size={28} color={g.ic}/></div>
+            <span className="goal-label">{g.label}</span><span className="goal-desc">{g.desc}</span>
+            {goal===g.id&&<div className="check-mark"><I name="check" size={14} color="#fff"/></div>}
+          </button>))}</div>
+          <div className="nav-row"><button className="btn-secondary" onClick={goHome}><I name="arrow-left" size={16}/> Home</button><button className={`btn-primary${goal?"":" disabled"}`} onClick={()=>goal&&go(1)}>Choose Box Size <I name="arrow-right" size={16} color="#fff"/></button></div>
+        </div>)}
+
+        {step===1&&(<div className="step-container">
+          <div className="step-header"><h1 className="heading">Pick your box</h1><p className="subheading">More meals = bigger savings. All shipped fresh on Monday.</p></div>
+          <div className="box-grid">{BOX_SIZES.map(b=>(<button key={b.count} className={`box-card${boxSize===b.count?" active":""}`} onClick={()=>{setBoxSize(b.count);setSelectedMeals(selectedMeals.slice(0,b.count));}}>
+            {b.save&&<span className="save-badge">{b.save}</span>}
+            <div className="box-count">{b.count}</div><div className="box-label">{b.label}</div><div className="box-meals-label">meals</div>
+            <div className="box-divider"/><div className="box-price">{b.perMeal}<span className="box-price-unit">/meal</span></div><div className="box-total">{b.total} total</div>
+            {boxSize===b.count&&<div className="check-mark"><I name="check" size={14} color="#fff"/></div>}
+          </button>))}</div>
+          <div className="nav-row"><button className="btn-secondary" onClick={()=>go(-1)}><I name="arrow-left" size={16}/> Back</button><button className={`btn-primary${boxSize?"":" disabled"}`} onClick={()=>boxSize&&go(1)}>Pick Your Meals <I name="arrow-right" size={16} color="#fff"/></button></div>
+        </div>)}
+
+        {step===2&&(<div className="step-container">
+          <div className="step-header"><h1 className="heading">Build your box</h1><p className="subheading">{slotsLeft>0?`Pick ${slotsLeft} more meal${slotsLeft>1?"s":""} to fill your box`:"Your box is full! Review your picks below."}</p></div>
+          <div className="your-box"><div className="your-box-header"><span className="your-box-title">Your Box</span><span className="your-box-count">{selectedMeals.length}/{maxMeals}</span></div>
+            <div className="slot-row">{Array.from({length:maxMeals}).map((_,i)=>{const meal=selectedMeals[i];return(<div key={i} className={`slot${meal?" filled":""}`}>{meal?(<><img src={meal.img} alt={meal.name} className="slot-img"/><button className="slot-remove" onClick={()=>removeMeal(meal.uid)}><I name="x" size={10} color="#fff"/></button><span className="slot-name">{meal.name}</span></>):(<span className="slot-empty">{i+1}</span>)}</div>);})}</div>
+          </div>
+          <div className="filter-row">{FILTERS.map(f=>(<button key={f.id} className={`filter-btn${filter===f.id?" active":""}`} onClick={()=>setFilter(f.id)}>{f.label}</button>))}</div>
+          <div className="meal-grid">{fm.map(meal=>{const count=selectedMeals.filter(m=>m.id===meal.id).length;const full=slotsLeft===0;return(<div key={meal.id} className="meal-card"><div className="meal-img-wrap"><img src={meal.img} alt={meal.name} className="meal-img"/>{count>0&&<span className="meal-count-badge">&times;{count}</span>}</div><div className="meal-info"><span className="meal-name">{meal.name}</span><div className="meal-macros"><span className="meal-macro-pill">{meal.cal} cal</span><span className="meal-macro-pill protein">P {meal.protein}g</span><span className="meal-macro-pill">C {meal.carbs}g</span><span className="meal-macro-pill">F {meal.fat}g</span></div></div><button className={`add-btn${full?" disabled":""}`} onClick={()=>!full&&addMeal(meal)}>{full?"Box Full":"+ Add"}</button></div>);})}</div>
+          <div className="nav-row"><button className="btn-secondary" onClick={()=>go(-1)}><I name="arrow-left" size={16}/> Back</button><button className={`btn-primary${selectedMeals.length===maxMeals?"":" disabled"}`} onClick={()=>selectedMeals.length===maxMeals&&go(1)}>Review Order <I name="arrow-right" size={16} color="#fff"/></button></div>
+        </div>)}
+
+        {step===3&&(<div className="step-container">
+          <div className="step-header"><h1 className="heading">Your meal plan</h1><p className="subheading" style={{display:'flex',alignItems:'center',justifyContent:'center',gap:8}}><span className="icon-wrap-sm" style={{background:gd?.bg}}><I name={gd?.icon} size={16} color={gd?.ic}/></span> {gd?.label} · {maxMeals} Meals</p></div>
+          <div className="review-grid"><div className="review-meals">
+            {selectedMeals.map((meal,i)=>(<div key={meal.uid} className="review-item"><img src={meal.img} alt={meal.name} className="review-img"/><div className="review-item-info"><span className="review-item-name">Meal {i+1}</span><span className="review-item-meal">{meal.name}</span></div><div className="review-macro-row"><span className="review-macro-pill">{meal.cal} cal</span><span className="review-macro-pill protein">P {meal.protein}g</span><span className="review-macro-pill">C {meal.carbs}g</span><span className="review-macro-pill">F {meal.fat}g</span></div><button className="review-remove" onClick={()=>removeMeal(meal.uid)}><I name="x" size={14}/></button></div>))}
+          </div>
+          <div className="summary-card">
+            <h3 className="summary-title">Order Summary</h3>
+            <div className="summary-row"><span>Plan</span><span>{gd?.label}</span></div>
+            <div className="summary-row"><span>Box</span><span>{maxMeals} meals</span></div>
+            <div className="summary-row"><span>Per meal</span><span>{currentBox?.perMeal}</span></div>
+            <div className="summary-row"><span>Shipping</span><span style={{color:"#2d7a4f"}}>FREE</span></div>
+            <div className="summary-divider"/>
+            <div className="summary-row total"><span>Total</span><span>${totalPrice}</span></div>
+            {currentBox?.save&&<div className="summary-you-save"><I name="sparkles" size={16} color="#2d7a4f"/> You're saving <strong>{currentBox.save.replace("Save ","")}</strong> with the {currentBox.label} box</div>}
+            <button className="checkout-btn">Place Order</button>
+            <p className="summary-note">Ships fresh every Monday. Arrives Tuesday–Wednesday.</p>
+          </div></div>
+          <div className="nav-row"><button className="btn-secondary" onClick={()=>go(-1)}><I name="arrow-left" size={16}/> Edit Meals</button><div/></div>
+        </div>)}
+      </div></main>
+    </div>
+  </>);
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>
