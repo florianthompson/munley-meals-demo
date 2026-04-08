@@ -261,23 +261,23 @@ const MI={
 const svgP=(icon,g1,g2)=>`data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${g1}"/><stop offset="100%" stop-color="${g2}"/></linearGradient></defs><rect width="400" height="300" fill="url(#g)"/><g transform="translate(164,114)" stroke="rgba(255,255,255,0.7)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><svg width="72" height="72" viewBox="0 0 24 24">${icon}</svg></g></svg>`)}`;
 
 const MEALS=[
-  {id:1,name:"Hawaiian Bowl",cat:"bowl",mi:"bowl",g1:"#f7c59f",g2:"#e8a87c",cal:420,protein:38,carbs:42,fat:10},
-  {id:2,name:"Chicken Parm",cat:"classic",mi:"drumstick",g1:"#e8cfc0",g2:"#d4a88c",cal:480,protein:42,carbs:38,fat:14},
-  {id:3,name:"Buffalo Chicken Wrap",cat:"wrap",mi:"wrap",g1:"#f0c27f",g2:"#e0956b",cal:390,protein:36,carbs:32,fat:11},
-  {id:4,name:"Chicken Quesadilla",cat:"wrap",mi:"wrap",g1:"#f5d98e",g2:"#e8c46a",cal:440,protein:35,carbs:36,fat:15},
-  {id:5,name:"Sliced Sirloin",cat:"classic",mi:"steak",g1:"#c9a89a",g2:"#a67c6d",cal:460,protein:44,carbs:30,fat:16},
-  {id:6,name:"Taco Bowl",cat:"bowl",mi:"bowl",g1:"#f2d49b",g2:"#d4a65a",cal:450,protein:36,carbs:44,fat:13},
-  {id:7,name:"Breakfast Wraps",cat:"breakfast",mi:"egg",g1:"#fbd786",g2:"#f7a97d",cal:380,protein:30,carbs:28,fat:14},
-  {id:8,name:"Sage Ground Turkey",cat:"classic",mi:"drumstick",g1:"#b8c9a3",g2:"#8fa672",cal:400,protein:40,carbs:32,fat:10},
-  {id:9,name:"Taco Wrap",cat:"wrap",mi:"wrap",g1:"#e8c98e",g2:"#c9975e",cal:430,protein:34,carbs:36,fat:14},
-  {id:10,name:"Greek Bowl",cat:"bowl",mi:"bowl",g1:"#a8c9b8",g2:"#7ba892",cal:410,protein:37,carbs:38,fat:11},
-  {id:11,name:"Seasoned Shrimp Pasta",cat:"classic",mi:"shrimp",g1:"#f5c0a8",g2:"#e89878",cal:440,protein:34,carbs:46,fat:10},
-  {id:12,name:"Lemon Pepper Salmon",cat:"classic",mi:"fish",g1:"#fde2b5",g2:"#f5c67a",cal:430,protein:40,carbs:28,fat:16},
-  {id:13,name:"Omelette & Homefries",cat:"breakfast",mi:"egg",g1:"#fbe8a6",g2:"#f4d35e",cal:370,protein:28,carbs:30,fat:14},
-  {id:14,name:"Kodiak Pancakes",cat:"breakfast",mi:"pancakes",g1:"#e0c9a6",g2:"#c4a06a",cal:440,protein:26,carbs:56,fat:10},
-  {id:15,name:"Penne with Meatballs",cat:"classic",mi:"pasta",g1:"#e8a87c",g2:"#c9604a",cal:520,protein:38,carbs:50,fat:16},
-  {id:16,name:"Surf and Turf",cat:"classic",mi:"lobster",g1:"#d4958e",g2:"#b86b62",cal:490,protein:46,carbs:26,fat:18},
-].map(m=>({...m,img:svgP(MI[m.mi]||MI.bowl,m.g1,m.g2)}));
+  {id:1,name:"Hawaiian Bowl",cat:"bowl",cal:420,protein:38,carbs:42,fat:10,img:"https://munleymademeals.com/cdn/shop/files/MMM_-_Hawaiian_Bowl_-_Camera_Edit_5.heic?v=1760464757"},
+  {id:2,name:"Chicken Parm",cat:"classic",cal:480,protein:42,carbs:38,fat:14,img:"https://munleymademeals.com/cdn/shop/files/MMM-ChickenParm-CameraEdit-2.jpg?v=1756052734"},
+  {id:3,name:"Buffalo Chicken Wrap",cat:"wrap",cal:390,protein:36,carbs:32,fat:11,img:"https://munleymademeals.com/cdn/shop/files/ChatGPTImageAug22_2025_04_12_20PM-Enhanced-SR.jpg?v=1756053367"},
+  {id:4,name:"Chicken Quesadilla",cat:"wrap",cal:440,protein:35,carbs:36,fat:15,img:"https://munleymademeals.com/cdn/shop/files/ChatGPTImageAug22_2025_03_12_35PM-Enhanced-SR.jpg?v=1756052865"},
+  {id:5,name:"Sliced Sirloin",cat:"classic",cal:460,protein:44,carbs:30,fat:16,img:"https://munleymademeals.com/cdn/shop/files/MMM-SlicedSirloin-CameraEdit-2.jpg?v=1756052389"},
+  {id:6,name:"Taco Bowl",cat:"bowl",cal:450,protein:36,carbs:44,fat:13,img:"https://munleymademeals.com/cdn/shop/files/MMM-TacoBowl-CameraEdit-4_a04ce2e0-a23d-4111-93b4-fad1b2c6fc7f.jpg?v=1756053284"},
+  {id:7,name:"Breakfast Wraps",cat:"breakfast",cal:380,protein:30,carbs:28,fat:14,img:"https://munleymademeals.com/cdn/shop/files/MMM-BreakfastWrap-AIEdit.jpg?v=1755894855"},
+  {id:8,name:"Sage Ground Turkey",cat:"classic",cal:400,protein:40,carbs:32,fat:10,img:"https://munleymademeals.com/cdn/shop/files/MMM-SageGroundTurkey-CameraEdit-2.jpg?v=1756052502"},
+  {id:9,name:"Taco Wrap",cat:"wrap",cal:430,protein:34,carbs:36,fat:14,img:"https://munleymademeals.com/cdn/shop/files/MMM-TacoWrap-CameraEdit-2.jpg?v=1756052604"},
+  {id:10,name:"Greek Bowl",cat:"bowl",cal:410,protein:37,carbs:38,fat:11,img:"https://munleymademeals.com/cdn/shop/files/DSC02727-Enhanced-NR.jpg?v=1756053119"},
+  {id:11,name:"Seasoned Shrimp Pasta",cat:"classic",cal:440,protein:34,carbs:46,fat:10,img:"https://munleymademeals.com/cdn/shop/files/MMM-SeasonedShrimpPasta-CameraEdit-2.jpg?v=1756052665"},
+  {id:12,name:"Lemon Pepper Salmon",cat:"classic",cal:430,protein:40,carbs:28,fat:16,img:"https://munleymademeals.com/cdn/shop/files/MMM-LemonPepperSalmon-CameraEdit-2.jpg?v=1756052311"},
+  {id:13,name:"Omelette & Homefries",cat:"breakfast",cal:370,protein:28,carbs:30,fat:14,img:"https://munleymademeals.com/cdn/shop/files/IMG_0310_139148da-d685-49d9-8173-ffaf60bd0de4.jpg?v=1760493882"},
+  {id:14,name:"Kodiak Pancakes",cat:"breakfast",cal:440,protein:26,carbs:56,fat:10,img:"https://munleymademeals.com/cdn/shop/files/IMG_4835.jpg?v=1760496580"},
+  {id:15,name:"Penne with Meatballs",cat:"classic",cal:520,protein:38,carbs:50,fat:16,img:"https://munleymademeals.com/cdn/shop/files/IMG_1339.png?v=1770864179"},
+  {id:16,name:"Surf and Turf",cat:"classic",cal:490,protein:46,carbs:26,fat:18,img:"https://munleymademeals.com/cdn/shop/files/IMG_1371.jpg?v=1772064121"},
+];
 
 const FILTERS=[{id:"all",label:"All"},{id:"bowl",label:"Bowls"},{id:"wrap",label:"Wraps"},{id:"classic",label:"Classics"},{id:"breakfast",label:"Breakfast"}];
 const STEPS=["Goal","Box Size","Pick Meals","Review"];
