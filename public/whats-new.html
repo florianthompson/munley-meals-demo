@@ -64,8 +64,7 @@ a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 
 /* Previous updates list */
 .prev-list{display:flex;flex-direction:column;gap:14px;margin-top:24px}
-.prev-item{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px 20px;display:grid;grid-template-columns:90px 1fr;gap:18px;align-items:start}
-.prev-date{font-size:12px;color:var(--light);font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding-top:2px}
+.prev-item{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px 20px}
 .prev-h{font-weight:700;font-size:15px;margin-bottom:3px}
 .prev-d{font-size:14px;color:var(--mid);line-height:1.55}
 .prev-d code{background:var(--warm);padding:1px 6px;border-radius:4px;font-size:12px;font-family:'DM Sans',monospace}
@@ -81,8 +80,6 @@ a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
   .r-title{font-size:26px}
   .hl{grid-template-columns:1fr}
   .split{grid-template-columns:1fr}
-  .prev-item{grid-template-columns:1fr;gap:6px}
-  .prev-date{padding-top:0}
 }
 </style>
 </head>
@@ -169,46 +166,30 @@ a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
   <section class="release">
     <div class="r-meta">
       <span class="r-tag prev">Previous</span>
-      <span class="r-date">April 8, 2026</span>
     </div>
     <h2 class="r-title">Foundations: real product images and builder polish</h2>
     <p class="r-lede">The earlier batch of updates established the demo and refined the original box-builder UI. The macro-targeted planner replaced the box-builder, but the real product images carried forward.</p>
 
     <div class="prev-list">
       <div class="prev-item">
-        <div class="prev-date">Apr 8</div>
-        <div>
-          <div class="prev-h">Real Shopify product images on every meal card</div>
-          <div class="prev-d">Swapped the placeholder gradient SVGs for the actual photography served from <code>munleymademeals.com/cdn/shop</code>. All 16 meals now show their real product photos in the picker, day slots, and review.</div>
-        </div>
+        <div class="prev-h">Real Shopify product images on every meal card</div>
+        <div class="prev-d">Swapped the placeholder gradient SVGs for the actual photography served from <code>munleymademeals.com/cdn/shop</code>. All 16 meals now show their real product photos in the picker, day slots, and review.</div>
       </div>
       <div class="prev-item">
-        <div class="prev-date">Apr 8</div>
-        <div>
-          <div class="prev-h">Progress step labels aligned under their circles</div>
-          <div class="prev-d">Fixed an alignment bug where the step labels in the builder header drifted off-center; they now sit directly under each numbered circle.</div>
-        </div>
+        <div class="prev-h">Progress step labels aligned under their circles</div>
+        <div class="prev-d">Fixed an alignment bug where the step labels in the builder header drifted off-center; they now sit directly under each numbered circle.</div>
       </div>
       <div class="prev-item">
-        <div class="prev-date">Apr 8</div>
-        <div>
-          <div class="prev-h">Box overview card improvements <span style="color:var(--light);font-weight:500">(superseded)</span></div>
-          <div class="prev-d">Larger cards, better text wrapping, and a cleaner remove button on the box overview. Replaced by the per-day weekly planner in the April 30 update.</div>
-        </div>
+        <div class="prev-h">Box overview card improvements <span style="color:var(--light);font-weight:500">(superseded)</span></div>
+        <div class="prev-d">Larger cards, better text wrapping, and a cleaner remove button on the box overview. Replaced by the per-day weekly planner in the latest update.</div>
       </div>
       <div class="prev-item">
-        <div class="prev-date">Apr 7</div>
-        <div>
-          <div class="prev-h">Embedded the Munley React source as the demo</div>
-          <div class="prev-d">Wired the provided React app into the Next.js shell as <code>public/munley-source.html</code>, served through an iframe.</div>
-        </div>
+        <div class="prev-h">Embedded the Munley React source as the demo</div>
+        <div class="prev-d">Wired the provided React app into the Next.js shell as <code>public/munley-source.html</code>, served through an iframe.</div>
       </div>
       <div class="prev-item">
-        <div class="prev-date">Apr 7</div>
-        <div>
-          <div class="prev-h">Initial Next.js meal-delivery demo</div>
-          <div class="prev-d">Project scaffolded with Next.js 16 + React 19. Initial sourced meal imagery added to <code>/public/meals</code>.</div>
-        </div>
+        <div class="prev-h">Initial Next.js meal-delivery demo</div>
+        <div class="prev-d">Project scaffolded with Next.js 16 + React 19. Initial sourced meal imagery added to <code>/public/meals</code>.</div>
       </div>
     </div>
   </section>
