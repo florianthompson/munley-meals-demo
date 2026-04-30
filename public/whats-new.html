@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>What's New — Munley Made Meals Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#faf9f6;--dark:#1a1a1a;--mid:#6b6b6b;--light:#a3a3a3;--border:#e8e5e0;--accent:#c0392b;--ah:#a93226;--green:#2d7a4f;--gl:#e8f5ee;--warm:#f5f0ea;--serif:'Playfair Display',serif}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--dark);-webkit-font-smoothing:antialiased;line-height:1.55}
+img{display:block;max-width:100%}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+
+/* Top nav */
+.nav{position:sticky;top:0;z-index:100;background:rgba(26,26,26,.96);backdrop-filter:blur(12px);padding:0 24px;border-bottom:1px solid rgba(255,255,255,.06)}
+.nav-in{max-width:1000px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
+.n-logo{display:flex;align-items:center;gap:10px}
+.n-logo-i{width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:700;font-size:17px}
+.n-logo-t{font-family:var(--serif);color:#fff;font-size:17px;font-weight:600;letter-spacing:-.02em}
+.n-back{color:#bbb;font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:6px}
+.n-back:hover{color:#fff;text-decoration:none}
+
+/* Hero */
+.hero{padding:80px 24px 56px;text-align:center;background:linear-gradient(180deg,#1a1a1a,#2a2320 70%,#3d2e24)}
+.hero-in{max-width:760px;margin:0 auto}
+.hero-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(192,57,43,.15);border:1px solid rgba(192,57,43,.4);border-radius:30px;padding:6px 16px;font-size:12px;color:#fff;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:24px}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.hero h1{font-family:var(--serif);font-size:48px;font-weight:700;color:#fff;letter-spacing:-.03em;line-height:1.08;margin-bottom:16px}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero p{font-size:17px;color:#a89e96;max-width:540px;margin:0 auto}
+
+/* Sections */
+.wrap{max-width:920px;margin:0 auto;padding:0 24px}
+.release{padding:64px 0;border-bottom:1px solid var(--border)}
+.release:last-of-type{border-bottom:none}
+.r-meta{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.r-tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:5px 11px;border-radius:6px;background:var(--accent);color:#fff}
+.r-tag.prev{background:var(--warm);color:var(--mid)}
+.r-date{font-size:13px;color:var(--light);font-weight:500}
+.r-title{font-family:var(--serif);font-size:34px;font-weight:700;letter-spacing:-.02em;margin-bottom:12px;line-height:1.15}
+.r-lede{font-size:17px;color:var(--mid);max-width:680px;margin-bottom:36px}
+
+/* Highlights row */
+.hl{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:40px}
+.hl-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px}
+.hl-i{width:32px;height:32px;border-radius:8px;background:var(--gl);color:var(--green);display:flex;align-items:center;justify-content:center;font-weight:700;font-family:var(--serif);font-size:15px;margin-bottom:10px}
+.hl-t{font-weight:700;font-size:14px;margin-bottom:4px}
+.hl-d{font-size:13px;color:var(--mid);line-height:1.5}
+
+/* Feature blocks */
+.feat{margin-top:36px}
+.feat-h{display:flex;align-items:baseline;gap:10px;margin-bottom:6px}
+.feat-num{font-family:var(--serif);font-style:italic;font-size:14px;color:var(--accent);font-weight:600}
+.feat-t{font-family:var(--serif);font-size:22px;font-weight:700;letter-spacing:-.01em}
+.feat-d{font-size:15px;color:var(--mid);margin-bottom:18px;max-width:680px}
+.feat-img{border-radius:14px;overflow:hidden;border:1px solid var(--border);box-shadow:0 6px 24px rgba(0,0,0,.06);background:#fff}
+.feat-img img{width:100%;height:auto;display:block}
+
+/* Side by side */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+.split .feat-img{margin:0}
+
+/* Previous updates list */
+.prev-list{display:flex;flex-direction:column;gap:14px;margin-top:24px}
+.prev-item{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px 20px;display:grid;grid-template-columns:90px 1fr;gap:18px;align-items:start}
+.prev-date{font-size:12px;color:var(--light);font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding-top:2px}
+.prev-h{font-weight:700;font-size:15px;margin-bottom:3px}
+.prev-d{font-size:14px;color:var(--mid);line-height:1.55}
+.prev-d code{background:var(--warm);padding:1px 6px;border-radius:4px;font-size:12px;font-family:'DM Sans',monospace}
+
+/* Footer */
+.ft{background:var(--dark);color:#777;padding:36px 24px;text-align:center;font-size:13px;margin-top:40px}
+.ft a{color:#bbb;font-weight:500}
+.ft a:hover{color:#fff;text-decoration:none}
+
+@media(max-width:760px){
+  .hero h1{font-size:34px}
+  .hero{padding:56px 18px 40px}
+  .r-title{font-size:26px}
+  .hl{grid-template-columns:1fr}
+  .split{grid-template-columns:1fr}
+  .prev-item{grid-template-columns:1fr;gap:6px}
+  .prev-date{padding-top:0}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="nav-in">
+  <a href="/" class="n-logo" style="text-decoration:none">
+    <span class="n-logo-i">M</span>
+    <span class="n-logo-t">Munley Made Meals</span>
+  </a>
+  <a href="/" class="n-back">← Back to demo</a>
+</div></nav>
+
+<header class="hero"><div class="hero-in">
+  <div class="hero-pill"><span class="hero-dot"></span> Changelog</div>
+  <h1>What's <em>new</em></h1>
+  <p>The latest updates to the Munley Made Meals demo — from the initial site through today's macro-targeted weekly planner.</p>
+</div></header>
+
+<main class="wrap">
+
+  <!-- TODAY -->
+  <section class="release">
+    <div class="r-meta">
+      <span class="r-tag">Latest</span>
+      <span class="r-date">April 30, 2026</span>
+    </div>
+    <h2 class="r-title">Macro-targeted weekly planner, calculator, and per-day meal slots</h2>
+    <p class="r-lede">The single-box checkout has been replaced with a four-step wizard that builds a complete weekly meal schedule around the customer's exact daily macros. Customers can pick a goal preset or calculate their own targets from body stats and activity level.</p>
+
+    <div class="hl">
+      <div class="hl-card">
+        <div class="hl-i">1</div>
+        <div class="hl-t">Macro calculator</div>
+        <div class="hl-d">Mifflin-St Jeor formula with sex, age, weight, height, activity, and goal — or one-tap presets.</div>
+      </div>
+      <div class="hl-card">
+        <div class="hl-i">2</div>
+        <div class="hl-t">Per-day meal slots</div>
+        <div class="hl-d">Pick meals per day across the week instead of one undifferentiated box.</div>
+      </div>
+      <div class="hl-card">
+        <div class="hl-i">3</div>
+        <div class="hl-t">Volume-based pricing</div>
+        <div class="hl-d">Per-meal price drops automatically as weekly volume grows ($13.95 → $10.95).</div>
+      </div>
+    </div>
+
+    <div class="feat">
+      <div class="feat-h"><span class="feat-num">Step 1</span><span class="feat-t">Choose a preset or calculate your macros</span></div>
+      <p class="feat-d">A new entry screen lets customers either grab one of four goal presets or open a guided wizard that calculates daily targets from their body stats.</p>
+      <div class="split">
+        <div class="feat-img"><img src="/whats-new/03-macro-method.png" alt="Macro method picker — Quick Preset or Calculate My Macros"/></div>
+        <div class="feat-img"><img src="/whats-new/04-calculator.png" alt="Custom macro calculator wizard with sex, age, weight, height, activity, and goal"/></div>
+      </div>
+    </div>
+
+    <div class="feat">
+      <div class="feat-h"><span class="feat-num">Step 1.5</span><span class="feat-t">Daily targets, with chef-portioning context</span></div>
+      <p class="feat-d">After calculation, the customer sees their daily calorie and macro targets — calories, protein, carbs, fat — with a note that Chef Munley adjusts portions to hit them.</p>
+      <div class="feat-img"><img src="/whats-new/05-daily-targets.png" alt="Daily macro targets card showing calories, protein, carbs, fat"/></div>
+    </div>
+
+    <div class="feat">
+      <div class="feat-h"><span class="feat-num">Step 2</span><span class="feat-t">Set up the weekly schedule</span></div>
+      <p class="feat-d">Pick how many meals per day (2–4) and how many days per week (4–7). The price-per-meal updates live based on total weekly volume.</p>
+      <div class="feat-img"><img src="/whats-new/06-plan-setup.png" alt="Plan setup screen with meals-per-day and days-per-week pickers"/></div>
+    </div>
+
+    <div class="feat">
+      <div class="feat-h"><span class="feat-num">Step 3</span><span class="feat-t">Fill the week, day by day</span></div>
+      <p class="feat-d">Each day shows its slots and progress at a glance. Tap a day to add meals; the active day is highlighted, completed days turn green, and the planner auto-jumps to the next empty day when one is full.</p>
+      <div class="feat-img"><img src="/whats-new/08-fill-week-progress.png" alt="Fill-your-week planner with Monday completed and Tuesday in progress"/></div>
+    </div>
+
+    <div class="feat">
+      <div class="feat-h"><span class="feat-num">Step 4</span><span class="feat-t">Review the week and check out</span></div>
+      <p class="feat-d">The review step lays out the entire week grouped by day, with a sticky order summary on the right that includes the customer's daily macro targets, line-item pricing, and free shipping.</p>
+      <div class="feat-img"><img src="/whats-new/09-review-cart.png" alt="Weekly review screen with full plan listed and sticky order summary"/></div>
+    </div>
+  </section>
+
+  <!-- PREVIOUS UPDATES -->
+  <section class="release">
+    <div class="r-meta">
+      <span class="r-tag prev">Previous</span>
+      <span class="r-date">April 8, 2026</span>
+    </div>
+    <h2 class="r-title">Foundations: real product images and builder polish</h2>
+    <p class="r-lede">The earlier batch of updates established the demo and refined the original box-builder UI. The macro-targeted planner replaced the box-builder, but the real product images carried forward.</p>
+
+    <div class="prev-list">
+      <div class="prev-item">
+        <div class="prev-date">Apr 8</div>
+        <div>
+          <div class="prev-h">Real Shopify product images on every meal card</div>
+          <div class="prev-d">Swapped the placeholder gradient SVGs for the actual photography served from <code>munleymademeals.com/cdn/shop</code>. All 16 meals now show their real product photos in the picker, day slots, and review.</div>
+        </div>
+      </div>
+      <div class="prev-item">
+        <div class="prev-date">Apr 8</div>
+        <div>
+          <div class="prev-h">Progress step labels aligned under their circles</div>
+          <div class="prev-d">Fixed an alignment bug where the step labels in the builder header drifted off-center; they now sit directly under each numbered circle.</div>
+        </div>
+      </div>
+      <div class="prev-item">
+        <div class="prev-date">Apr 8</div>
+        <div>
+          <div class="prev-h">Box overview card improvements <span style="color:var(--light);font-weight:500">(superseded)</span></div>
+          <div class="prev-d">Larger cards, better text wrapping, and a cleaner remove button on the box overview. Replaced by the per-day weekly planner in the April 30 update.</div>
+        </div>
+      </div>
+      <div class="prev-item">
+        <div class="prev-date">Apr 7</div>
+        <div>
+          <div class="prev-h">Embedded the Munley React source as the demo</div>
+          <div class="prev-d">Wired the provided React app into the Next.js shell as <code>public/munley-source.html</code>, served through an iframe.</div>
+        </div>
+      </div>
+      <div class="prev-item">
+        <div class="prev-date">Apr 7</div>
+        <div>
+          <div class="prev-h">Initial Next.js meal-delivery demo</div>
+          <div class="prev-d">Project scaffolded with Next.js 16 + React 19. Initial sourced meal imagery added to <code>/public/meals</code>.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="ft">
+  <a href="/">← Back to the live demo</a>
+  &nbsp;·&nbsp; Munley Made Meals demo
+</footer>
+
+</body>
+</html>
